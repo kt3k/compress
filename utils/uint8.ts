@@ -1,4 +1,8 @@
-export async function readMsg(reader: Deno.Reader): Promise<Uint8Array | null> {
+type Reader = {
+  read(p: Uint8Array): Promise<number | null>;
+};
+
+export async function readMsg(reader: Reader): Promise<Uint8Array | null> {
   const arr: Uint8Array[] = [];
   const n = 100;
   let readed: number | null;
